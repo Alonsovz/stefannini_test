@@ -104,6 +104,6 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close class="close_btn" (click)="cerrar()">Cerrar</button>
-    <button mat-button cdkFocusInitial class="install_btn" *ngIf="app_detail.instalado">Instalar</button>
-    <button mat-button cdkFocusInitial disabled *ngIf="!app_detail.instalado">Instalar</button>
+    <button mat-button cdkFocusInitial disabled  *ngIf="app_detail.instalado">Instalar</button>
+    <button mat-button cdkFocusInitial  class="install_btn" *ngIf="!app_detail.instalado">Instalar</button>
   </mat-dialog-actions>
