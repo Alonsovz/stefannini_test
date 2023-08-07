@@ -1,0 +1,14 @@
+<h3>Agrega una nueva valoración para la app </h3>
+<br>
+<mat-divider></mat-divider>
+<br>
+<mat-form-field class="example-full-width">
+    <mat-label>Agrega una valoración</mat-label>
+    <textarea matInput rows="3" [(ngModel)]="new_valoracion"></textarea>
+</mat-form-field>
+<br>
+<button mat-raised-button color="primary" (click)="guardaValoracion()">Guardar Calificación</button>
+ 
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="warn" (click)="openModalDetalle()">Cancelar</button>
+</div>

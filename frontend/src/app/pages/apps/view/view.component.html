@@ -1,0 +1,78 @@
+<mat-form-field class="categoria">
+  <mat-label>Categoría</mat-label>
+  <mat-select (selectionChange)="getCategoriaById($event)" [(ngModel)]="categoria_sl">
+    <mat-option value="0"> --SELECCIONE --</mat-option>
+    <mat-option *ngFor="let c of categorias" [value]="c.id">{{c.categoriaNombre}}</mat-option>
+  
+  </mat-select>
+</mat-form-field>
+<br>
+<button mat-raised-button color="warn" (click)="getAllApps()" *ngIf="filtros">
+    Ver todas las apps
+</button>
+
+
+<mat-grid-list cols="6" rowHeight="400px" *ngIf="apps.length > 0">
+
+    <mat-grid-tile *ngFor="let a of apps">
+        <mat-card class="example-card" (click)="showDetails(a)">
+            <mat-card-header>
+              <mat-card-title>
+                <img src="./assets/img/app-icons/{{a.imagenPrincipal}}">
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <h3>{{a.nombreAplicacion}}</h3>
+              <h4>{{a.author}}</h4>
+            <div>
+              <div *ngIf="a.calificacionAplicacion === 1">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+
+              <div *ngIf="a.calificacionAplicacion === 2">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+
+              <div *ngIf="a.calificacionAplicacion === 3">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+
+              <div *ngIf="a.calificacionAplicacion === 4">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+
+              <div *ngIf="a.calificacionAplicacion === 5">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+            </div>
+              
+            </mat-card-content>
+            <mat-card-actions>
+                <h3 *ngIf="a.precioAplicacion < 0.5"> FREE </h3>
+                <h3 *ngIf="a.precioAplicacion > 0.5"> $ {{a.precioAplicacion}} </h3>
+            </mat-card-actions>
+        </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+

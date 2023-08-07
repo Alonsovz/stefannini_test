@@ -1,0 +1,109 @@
+<mat-dialog-content>
+  <div class="control-container">
+    <ejs-carousel>
+      <e-carousel-items>
+        <e-carousel-item *ngFor="let img of app_detail.screenShots">
+          <ng-template #template>
+            <figure class="img-container">
+              <img src="./assets/img/app-screenshots/{{img.url}}" alt="cardinal" style="height:100%;width:100%;" />
+            </figure>
+          </ng-template>
+        </e-carousel-item>
+      </e-carousel-items>
+    </ejs-carousel>
+  </div>  
+        <mat-grid-list cols="2">
+            <mat-grid-tile>
+                <img src="./assets/img/app-icons/{{app_detail.imagenPrincipal}}">
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <table>
+                    <tr><th><h3>{{app_detail.nombreAplicacion}}</h3></th></tr>
+                    <tr><th><h3>{{app_detail.author}}</h3></th></tr>
+                    <tr><th><h3>{{app_detail.descripcionAplicacion}}</h3></th></tr>
+                    <tr><th>
+                      <h3 *ngIf="app_detail.precioAplicacion < 0.5"> FREE </h3>
+                      <h3 *ngIf="app_detail.precioAplicacion > 0.5"> $ {{app_detail.precioAplicacion}} </h3>
+                    </th></tr>
+                </table>
+            </mat-grid-tile>
+        </mat-grid-list>    
+        <br>
+        <mat-divider></mat-divider>  
+        <br>  
+        <div style="text-align: center !important;">
+          <div *ngIf="app_detail.calificacionAplicacion === 1">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+          </div>
+
+          <div *ngIf="app_detail.calificacionAplicacion === 2">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+          </div>
+
+          <div *ngIf="app_detail.calificacionAplicacion === 3">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+          </div>
+
+          <div *ngIf="app_detail.calificacionAplicacion === 4">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+          </div>
+
+          <div *ngIf="app_detail.calificacionAplicacion === 5">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <b class="calificacion">{{app_detail.calificacionAplicacion}}.0</b>
+          
+          <button mat-mini-fab color="primary"  matTooltip="Editar Calificación" class="btn_calificacion" (click)="editCalificacion(app_detail)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+        <br>
+        <mat-divider></mat-divider>  
+        <br>
+        <button mat-mini-fab color="primary"  matTooltip="Agregar Valoración" class="btn_valoracion" (click)="addValoracion(app_detail)">
+          <mat-icon>add</mat-icon>
+        </button>
+        <mat-card *ngFor="let v of app_detail.valoraciones" class="card_v">
+          <table style="width: 100% !important">
+            <tr >
+              <th style="width: 5% !important;" rowspan="2">
+                <img src="./assets/img/user.webp" style="left: 0 !important; ">
+              </th>
+              <th style="width: 95% !important; text-align: left !important;">
+                <h3 style="margin-left: 3% !important; font-style: oblique !important;"><b>"{{v.comentario}}"</b></h3>
+              </th>
+            </tr>
+            <tr>
+              <th style="width: 95% !important; text-align: left !important;">
+                <h3 style="margin-left: 3% !important;">Usuario {{v.id}}</h3>
+              </th>
+            </tr>
+          </table>
+        </mat-card><br>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close class="close_btn" (click)="cerrar()">Cerrar</button>
+    <button mat-button cdkFocusInitial class="install_btn" *ngIf="app_detail.instalado">Instalar</button>
+    <button mat-button cdkFocusInitial disabled *ngIf="!app_detail.instalado">Instalar</button>
+  </mat-dialog-actions>
